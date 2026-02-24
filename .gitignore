@@ -7,3 +7,9 @@ build/
 .coverage
 *.egg
 .env
+
+# Dev notes (local only)
+STREAMLIT_DEV_NOTE.md
+*_SESSION_NOTE.md
+*_DEV_NOTE.md
+NEXT_SESSION.md

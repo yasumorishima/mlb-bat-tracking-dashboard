@@ -1,6 +1,6 @@
 """
 2025 MLB Opening Day Lineups (primary starters by position)
-Source: C:\\Users\\fw_ya\\Desktop\\MLBレギュラー.txt (Opening Day 2025 context)
+Source: Opening Day 2025 roster data
 Name format: "Last, First" to match bat_tracking() data.
 Note: Where platoons exist, the primary/Opening Day starter is listed.
 """
