@@ -585,7 +585,8 @@ button[data-testid="stElementToolbarButton"] {
 
 
 # ── Load data ────────────────────────────────────────────────────────────────
-if load_btn:
+# Auto-load on first visit; reload when button is clicked
+if load_btn or "df_raw" not in st.session_state:
     with st.spinner(t["fetching"]):
         try:
             df_raw = load_bat_data(year, player_type)
