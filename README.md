@@ -1,6 +1,6 @@
 # MLB Bat Tracking Dashboard
 
-A Streamlit dashboard for exploring MLB bat tracking data (Hawk-Eye, 2024 season onward). English/Japanese bilingual.
+A Streamlit dashboard for exploring MLB bat tracking data (Hawk-Eye, 2024 season onward). English/Japanese bilingual. Mobile-friendly.
 
 **Live Demo:** [https://yasumorishima-mlb-bat-tracking.streamlit.app/](https://yasumorishima-mlb-bat-tracking.streamlit.app/)
 
