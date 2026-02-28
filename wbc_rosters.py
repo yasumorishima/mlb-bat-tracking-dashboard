@@ -1,6 +1,6 @@
 """
 WBC 2026 rosters — MLB-affiliated players only.
-Source: Baseball America (announced 2026-02-05)
+Source: Baseball America (announced 2026-02-05, updated 2026-03-01)
 Name format: "Last, First" to match bat_tracking() data.
 """
 
@@ -17,8 +17,10 @@ WBC_ROSTERS: dict[str, list[str]] = {
     ],
     "🇯🇵 Japan": [
         "Ohtani, Shohei", "Yamamoto, Yoshinobu", "Kikuchi, Yusei",
-        "Suzuki, Seiya", "Yoshida, Masataka", "Matsui, Yusei",
+        "Suzuki, Seiya", "Yoshida, Masataka",
         "Murakami, Munetaka", "Okamoto, Kazuma", "Sugano, Tomoyuki",
+        # Matsui, Yuki (Padres) withdrew — left inner thigh injury (Feb 26)
+        # Replacement: 金丸夢斗 (Dragons, NPB) — no MLB bat tracking data
     ],
     "🇩🇴 Dominican Rep.": [
         "Alcántara, Sandy", "Alvarado, Elvis", "Brazobán, Huascar", "Bello, Brayan",
@@ -31,11 +33,16 @@ WBC_ROSTERS: dict[str, list[str]] = {
         "Wells, Austin",
     ],
     "🇻🇪 Venezuela": [
-        "Acuña Jr., Ronald", "Alvarado, Jose", "Abreu, Wilyer", "Arráez, Luis",
+        # ★ Roster updated Mar 1, 2026
+        # Withdrawn: López, Pablo (Tommy John surgery) / Alvarado, Jose (insurance denial)
+        #            Mosqueda, Oddanier (forearm inflammation)
+        # Added: Díaz, Jhonathan (Mariners) / Ávila, Luinder (Royals)
+        # Note: Christian Suárez (Dodgers org, minor league) — no MLB bat tracking data
+        "Acuña Jr., Ronald", "Abreu, Wilyer", "Arráez, Luis",
         "Bazardo, Eduard", "Buttó, José", "Chourio, Jackson", "Contreras, Willson",
-        "Contreras, William", "De Jesus, Enmanuel", "Garcia, Maikel", "Giménez, Andrés",
-        "Gómez, Yoendrys", "Guzman, Carlos", "López, Pablo", "Montero, Keider",
-        "Mosqueda, Oddanier", "Palencia, Daniel", "Perez, Salvador",
+        "Contreras, William", "De Jesus, Enmanuel", "Díaz, Jhonathan", "Garcia, Maikel",
+        "Giménez, Andrés", "Gómez, Yoendrys", "Guzman, Carlos", "Montero, Keider",
+        "Ávila, Luinder", "Palencia, Daniel", "Perez, Salvador",
         "Rodríguez, Eduardo", "Sanoja, Javier", "Senzatela, Antonio",
         "Suárez, Eugenio", "Suárez, Ranger", "Torres, Gleyber", "Tovar, Ezequiel",
         "Zerpa, Angel",
