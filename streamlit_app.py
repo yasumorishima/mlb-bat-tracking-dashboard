@@ -18,7 +18,18 @@ st.set_page_config(
     page_title="MLB Bat Tracking Dashboard",
     page_icon="⚾",
     layout="wide",
+    initial_sidebar_state="collapsed",
 )
+
+st.markdown("""
+<style>
+@media (max-width: 768px) {
+    .block-container { padding: 1rem 0.5rem !important; }
+    [data-testid="column"] { min-width: 45% !important; flex: 1 1 45% !important; }
+    [data-testid="stHorizontalBlock"] { flex-wrap: wrap !important; }
+}
+</style>
+""", unsafe_allow_html=True)
 
 BLUE = "#1f4e79"
 RED = "#c0392b"
@@ -728,7 +739,7 @@ with tab1:
             p_pad = (p_vals.max() - p_vals.min()) * 0.15 + 0.1
             ax.set_xlim(left=p_vals.min() - p_pad * 0.3, right=p_vals.max() + p_pad)
             fig.tight_layout()
-            st.pyplot(fig)
+            st.pyplot(fig, use_container_width=True)
             plt.close(fig)
             st.caption(t["color_pitcher_lower"] if lib else t["color_pitcher_higher"])
 
@@ -779,7 +790,7 @@ with tab1:
         pad = (vals.max() - vals.min()) * 0.15 + 0.5
         ax.set_xlim(left=vals.min() - pad * 0.3, right=vals.max() + pad)
         fig.tight_layout()
-        st.pyplot(fig)
+        st.pyplot(fig, use_container_width=True)
         plt.close(fig)
         st.caption(t["color_vs_avg"])
         if metric == "ideal_attack_angle_rate":
@@ -846,11 +857,11 @@ with tab2:
                 ax.set_yticklabels([])
                 ax.set_title(t["radar_title_pitcher"], fontsize=12, fontweight="bold", pad=20)
                 ax.legend(loc="upper right", bbox_to_anchor=(1.35, 1.15), fontsize=9)
-                st.pyplot(fig)
+                st.pyplot(fig, use_container_width=True)
                 plt.close(fig)
                 st.caption(t["pitcher_compare_note"])
 
-                fig2, axes2 = plt.subplots(1, N_p, figsize=(4 * N_p, 4.5))
+                fig2, axes2 = plt.subplots(1, N_p, figsize=(min(4 * N_p, 12), 4.5))
                 for ax2, m, label in zip(axes2, p_metrics, p_labels):
                     vals2 = [sub_p.loc[n, m] if n in sub_p.index else np.nan for n in sel_p]
                     bars2 = ax2.bar(range(len(sel_p)), vals2, color=PALETTE[:len(sel_p)])
@@ -871,7 +882,7 @@ with tab2:
                                      top=max(valid2) + v_pad2)
                 fig2.suptitle(f"Metric Comparison  ({t['bar_subtitle']})", fontsize=11)
                 fig2.tight_layout()
-                st.pyplot(fig2)
+                st.pyplot(fig2, use_container_width=True)
                 plt.close(fig2)
                 st.caption(t["cap_bar_note"])
 
@@ -918,11 +929,11 @@ with tab2:
             ax.set_yticklabels([])
             ax.set_title(t["radar_title"], fontsize=12, fontweight="bold", pad=20)
             ax.legend(loc="upper right", bbox_to_anchor=(1.35, 1.15), fontsize=9)
-            st.pyplot(fig)
+            st.pyplot(fig, use_container_width=True)
             plt.close(fig)
             st.caption(t["cap_radar_note"])
 
-            fig2, axes = plt.subplots(1, N, figsize=(4 * N, 4.5))
+            fig2, axes = plt.subplots(1, N, figsize=(min(4 * N, 12), 4.5))
             for ax2, m, label in zip(axes, metrics, labels):
                 vals = [sub.loc[n, m] if n in sub.index else np.nan for n in selected]
                 bars2 = ax2.bar(range(len(selected)), vals, color=PALETTE[:len(selected)])
@@ -943,7 +954,7 @@ with tab2:
                                  top=max(valid_vals) + v_pad)
             fig2.suptitle(f"Metric Comparison  ({t['bar_subtitle']})", fontsize=11)
             fig2.tight_layout()
-            st.pyplot(fig2)
+            st.pyplot(fig2, use_container_width=True)
             plt.close(fig2)
             st.caption(t["cap_bar_note"])
 
@@ -1063,7 +1074,7 @@ with tab3:
             ax2.set_ylabel(t["graph_pitching_score"])
             ax2.set_title(t["graph_batting_vs_pitching"], fontsize=12, fontweight="bold")
             fig2.tight_layout()
-            st.pyplot(fig2)
+            st.pyplot(fig2, use_container_width=True)
             plt.close(fig2)
             st.caption(t["cap_wbc_scatter"])
 
@@ -1288,7 +1299,7 @@ with tab4:
                     col.metric(label, f"{lineup_val:.2f}",
                                t["vs_league"].format(delta=delta))
 
-                fig, axes = plt.subplots(1, 4, figsize=(16, 5))
+                fig, axes = plt.subplots(1, 4, figsize=(12, 5))
                 for ax_i, (m, label) in enumerate(zip(metrics_show, labels_show)):
                     ax = axes[ax_i]
                     sorted_ld = lineup_data.sort_values(m, ascending=True)
@@ -1307,7 +1318,7 @@ with tab4:
                 fig.suptitle(t["graph_lineup_title"].format(team=sel_team), fontsize=12,
                              fontweight="bold")
                 fig.tight_layout()
-                st.pyplot(fig)
+                st.pyplot(fig, use_container_width=True)
                 plt.close(fig)
                 st.caption(t["color_vs_lineup"])
 
@@ -1377,7 +1388,7 @@ with tab4:
             pad = (vals.max() - vals.min()) * 0.15 + 0.5
             ax.set_xlim(left=vals.min() - pad * 0.3, right=vals.max() + pad)
             fig.tight_layout()
-            st.pyplot(fig)
+            st.pyplot(fig, use_container_width=True)
             plt.close(fig)
             st.caption(t["color_vs_avg"])
 
@@ -1393,7 +1404,7 @@ with tab4:
             ax2.set_title(t["graph_all_teams_strength"].format(year=year),
                           fontsize=13, fontweight="bold")
             fig2.tight_layout()
-            st.pyplot(fig2)
+            st.pyplot(fig2, use_container_width=True)
             plt.close(fig2)
             st.caption(t["color_top5"] + "  ·  " + t["cap_composite"])
 
@@ -1410,7 +1421,7 @@ with tab4:
                 ax3.set_title(t["graph_team_overall"].format(year=year), fontsize=13, fontweight="bold")
                 ax3.grid(axis="x", alpha=0.3)
                 fig3.tight_layout()
-                st.pyplot(fig3)
+                st.pyplot(fig3, use_container_width=True)
                 plt.close(fig3)
                 st.caption(t["color_top5"] + "  ·  " + t["cap_wbc_overall"])
 
@@ -1427,7 +1438,7 @@ with tab4:
                 ax4.set_ylabel(t["graph_pitching_score"])
                 ax4.set_title(t["graph_team_bp_scatter"], fontsize=12, fontweight="bold")
                 fig4.tight_layout()
-                st.pyplot(fig4)
+                st.pyplot(fig4, use_container_width=True)
                 plt.close(fig4)
                 st.caption(t["cap_wbc_scatter"])
 
@@ -1599,5 +1610,5 @@ with tab5:
             ax.legend(fontsize=9)
             ax.grid(axis="y", alpha=0.3)
             fig.tight_layout()
-            st.pyplot(fig)
+            st.pyplot(fig, use_container_width=True)
             plt.close(fig)
