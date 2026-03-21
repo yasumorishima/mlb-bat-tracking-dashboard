@@ -27,6 +27,23 @@ English / 日本語 対応 | モバイル対応
 - [matplotlib](https://matplotlib.org/) + [matplotlib-fontja](https://pypi.org/project/matplotlib-fontja/) — charts with Japanese font support
 - Data source: [Baseball Savant](https://baseballsavant.mlb.com/) (Hawk-Eye)
 
+## BigQuery Data
+
+All dashboard data is available on Google BigQuery (free tier, no cost).
+
+- **Project:** `data-platform-490901`
+- **Dataset:** `mlb_bat_tracking` (4,872 rows total)
+
+| Table | Rows | Source |
+|---|---|---|
+| `bat_tracking` | 2,540 | Baseball Savant (2024-2025) |
+| `batting_stats` | 1,249 | FanGraphs |
+| `pitching_stats` | 1,083 | FanGraphs |
+
+```sql
+SELECT * FROM `data-platform-490901.mlb_bat_tracking.bat_tracking` LIMIT 10
+```
+
 ## Local Setup
 
 ```bash
