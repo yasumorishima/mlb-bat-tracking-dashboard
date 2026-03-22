@@ -46,7 +46,7 @@ SELECT * FROM `data-platform-490901.mlb_bat_tracking.bat_tracking` LIMIT 10
 
 ## Grafana Dashboard
 
-[MLB Bat Tracking](https://yasumorishima.grafana.net/d/ee550ea2-0167-434d-850b-d038938bac9e) — Bat speed rankings, swing mechanics scatter plots, speed vs SLG correlation. Connected to BigQuery `data-platform-490901.mlb_bat_tracking`.
+[MLB Bat Tracking](https://yasumorishima.grafana.net/public-dashboards/dd2d3f0f064348d79a0c35e669982eb6) — Bat speed rankings, swing mechanics scatter plots, speed vs SLG correlation. Connected to BigQuery `data-platform-490901.mlb_bat_tracking`.
 
 ![MLB Bat Tracking — Grafana Dashboard](docs/images/grafana-preview.png)
 
