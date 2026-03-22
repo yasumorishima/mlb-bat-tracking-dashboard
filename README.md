@@ -44,6 +44,12 @@ All dashboard data is available on Google BigQuery (free tier, no cost).
 SELECT * FROM `data-platform-490901.mlb_bat_tracking.bat_tracking` LIMIT 10
 ```
 
+## Grafana Dashboard
+
+[MLB Bat Tracking](https://yasumorishima.grafana.net/d/ee550ea2-0167-434d-850b-d038938bac9e) — Bat speed rankings, swing mechanics scatter plots, speed vs SLG correlation. Connected to BigQuery `data-platform-490901.mlb_bat_tracking`.
+
+![MLB Bat Tracking — Grafana Dashboard](docs/images/grafana-preview.png)
+
 ## Local Setup
 
 ```bash
