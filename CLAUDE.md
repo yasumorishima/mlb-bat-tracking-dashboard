@@ -13,6 +13,15 @@ Streamlit dashboard (English/Japanese) for MLB bat-tracking metrics: leaderboard
 - 2026-02-13 – 2026-03-04: app built; data loads on first visit; WBC 2026 rosters updated for the 1 March roster changes.
 - 2026-03 – 2026-04-19: a Grafana/BigQuery section was added to README and removed again (`26861cd`, last commit).
 - 2026-11-01: this file written for cloud. Nothing run. The app's health endpoint `/~/+/_stcore/health` answered 200 (checked from the owner's PC); that shows the server is up, not that the page renders without an error.
+- 2026-11-01 (cloud): cloud can reach the live app — health 200 (`ok`), and Playwright Chromium rendered the start page ("Bat Tracking Powered by savant-extras … Season / Player type / Load Data"); Load Data was not pressed, so FanGraphs-backed parts are still unchecked.
+
+## Cloud reachability (measured 2026-11-01, cloud session)
+| Check | Result | Proof |
+|---|---|---|
+| `curl --max-time 60 https://yasumorishima-mlb-bat-tracking.streamlit.app/~/+/_stcore/health` | 200, 0.25 s | body `ok` |
+| Main page, curl `-L` + cookie jar | 303 → share.streamlit.io auth → 200 | 9,782 B platform shell (not app content) |
+| Main page, Playwright Chromium, 25 s wait | 200, renders | text "🇺🇸 English 🇯🇵 日本語 … ⚾ Bat Tracking Powered by savant-extras Season Player type Load Data 🔄 Reset" |
+| `https://share.streamlit.io` | 200 | no login attempted (Reboot still needs the owner's browser) |
 
 ## What this is
 `streamlit_app.py` (single file, ~1,600 lines) loads bat tracking with `savant_extras.bat_tracking` / `bat_tracking_monthly` / `bat_tracking_splits` (Baseball Savant), team names and pitching stats with `pybaseball.batting_stats` / `pitching_stats`, and static rosters from `wbc_rosters.py` and `mlb_lineups_2025.py`. Seasons offered: 2025, 2024. Python 3.11 on Streamlit Cloud (`runtime.txt`). The app is kept awake by the 6-hourly keepalive in the `wbc-scouting` repo (`streamlit_apps.txt` lists this URL).
